@@ -127,8 +127,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-MEDIA_ROOT = BASE_DIR / 'Uploads'  # Directory for media files
-MEDIA_URL = '/media/'  # URL to access media files
+# MEDIA_ROOT = BASE_DIR / 'Uploads'  # Directory for media files
+# MEDIA_URL = '/media/'
+MEDIA_ROOT = '/mediafiles'  # Mount point on Render
+MEDIA_URL = '/media/'
+
+  # URL to access media files
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
