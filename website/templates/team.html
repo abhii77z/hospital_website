@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Team{% endblock %}
+
+
+{% block content %}
+
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Team</h1>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item active text-primary">Team</li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+         <!-- Team Start -->
+<div class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Meet our team</h4>
+            </div>
+            <h1 class="display-3 mb-4">Physiotherapy Services from Professional Therapist</h1>
+            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+
+  {% for i in doctors %}
+<div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+    {% if i.detail %}
+   <a href="{% url 'doctor_detail' i.detail.id %}" class="text-decoration-none text-dark">
+
+    {% else %}
+    <a href="#" onclick="alert('No detail available')" class="text-decoration-none text-muted">
+    {% endif %}
+        <div class="team-item rounded">
+            <div class="team-img rounded-top h-100">
+                <img src="{{ i.doc_image.url }}" class="img-fluid rounded-top w-100" alt="">
+            </div>
+            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
+                <h5>{{ i.doc_name }}</h5>
+                <p class="mb-0">{{ i.doc_department }}</p>
+            </div>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+
+
+
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">View More</a>
+            </div>
+            
+           
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+
+
+  {% endblock content %}

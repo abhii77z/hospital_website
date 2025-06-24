@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dr. {{ doctor.d_name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+
+        .doctor-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .specialty-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .experience-badge {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+        }
+
+        .availability-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full">
+        <div class="doctor-card bg-white rounded-xl overflow-hidden">
+            <div class="md:flex">
+                <!-- Doctor Photo -->
+                <div class="md:w-1/3 relative">
+                    <img src="{{ doctor.d_image.url }}" alt="Dr. {{ doctor.d_name }}" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <h1 class="text-white text-2xl font-bold">Dr. {{ doctor.d_name }}</h1>
+                        <div class="flex items-center mt-1">
+                            <span class="specialty-badge text-white text-xs font-semibold px-2 py-1 rounded-full">
+                                <i class="fas fa-heartbeat mr-1"></i> {{ doctor.d_department.dep_name }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Details -->
+                <div class="md:w-2/3 p-6">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="experience-badge text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center">
+                            <i class="fas fa-briefcase-medical mr-1"></i> {{ doctor.d_experience }} Years Experience
+                        </span>
+                        <span class="text-xs font-semibold bg-gray-100 px-3 py-1 rounded-full flex items-center">
+                            <i class="fas fa-birthday-cake mr-1 text-gray-600"></i> {{ doctor.d_age }} Years Old
+                        </span>
+                        <span class="availability-badge text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center">
+                            <i class="fas fa-check-circle mr-1"></i> Accepting New Patients
+                        </span>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Professional Summary</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">{{ doctor.d_profsummary }}</p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3">
+                        <a href="{% url 'appointment' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                            <i class="fas fa-calendar-check mr-2"></i> Book Appointment
+                        </a>
+                        <a href="tel:{{ doctor.d_phone }}" class="border border-blue-600 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg flex items-center transition-colors">
+                            <i class="fas fa-phone-alt mr-2"></i> Contact
+                        </a>
+                        <a href="mailto:{{ doctor.d_email }}" class="border border-gray-300 text-gray-600 hover:bg-gray-50 px-4 py-2 rounded-lg flex items-center transition-colors">
+                            <i class="fas fa-envelope mr-2"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Info -->
+        <div class="mt-6 bg-white rounded-xl p-6 shadow">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">More About Dr. {{ doctor.d_name }}</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Education -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-graduation-cap text-blue-500 mr-2"></i> Education
+                    </h3>
+                    <p class="text-sm text-gray-600">{{ doctor.d_education }}</p>
+                </div>
+
+               <!-- Languages -->
+<div>
+    <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+        <i class="fas fa-language text-blue-500 mr-2"></i> Languages Spoken
+    </h3>
+    <div class="flex flex-wrap gap-2">
+        {% for lang in languages %}
+            <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full inline-block mb-1">
+                {{ lang }}
+            </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+                <!-- Awards -->
+                <div class="md:col-span-2">
+                    <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-award text-blue-500 mr-2"></i> Awards & Recognition
+                    </h3>
+                    <p class="text-sm text-gray-600">{{ doctor.d_awards }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
