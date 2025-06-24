@@ -129,8 +129,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # MEDIA_ROOT = BASE_DIR / 'Uploads'  # Directory for media files
 # MEDIA_URL = '/media/'
-MEDIA_ROOT = '/mediafiles'  # Mount point on Render
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'Uploads'  # this folder should hold your image subfolders like doctors/
+
+
 
   # URL to access media files
 
