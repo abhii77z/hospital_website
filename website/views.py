@@ -95,8 +95,7 @@ def feature(request):
     return render(request, 'feature.html')
 def team(request):
     departments = Department.objects.all() 
-    doctors = Doctordetails.objects.all()
-
+    doctors = Doctor.objects.all()
     therapy = Therapist.objects.all()
     blog = Blog.objects.all()
     # Fetch all doctors from the database
