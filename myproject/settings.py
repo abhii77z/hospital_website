@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&f6p=#z*#f(n7g=sc@yi4=#cq)7mo=%zw8x)w6h#=rd#i=a#7&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = ['hospital-website-1-ai48.onrender.com']
 
@@ -118,9 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
- os.path.join(BASE_DIR, 'static')  # Directory for static files
-]
+# STATICFILES_DIRS = [
+#  os.path.join(BASE_DIR, 'static')  # Directory for static files
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
+
 
 MEDIA_ROOT = BASE_DIR / 'Uploads'  # Directory for media files
 MEDIA_URL = '/media/'  # URL to access media files
