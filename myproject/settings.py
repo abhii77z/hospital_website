@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['hospital-website-1-ai48.onrender.com']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
